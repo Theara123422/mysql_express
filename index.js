@@ -1,6 +1,7 @@
 import express from 'express';
 import { config } from 'dotenv';
 import pool from './database/db_connect.js';
+import userRouter from './routes/userRoutes.js';
 config();
 const app  = express();
 const port = process.env.port | 3000;
@@ -11,6 +12,8 @@ pool.getConnection((error,connection)=>{
     connection.release();
 });
 
+//route
+app.use("/user" , userRouter)
 
 
 
